@@ -14,7 +14,7 @@ const App: React.FC = () => {
         <div style={{ textAlign: "center" }}>
           <img
             src={logo}
-            style={{ height: "100px", width: "100px" }}
+            style={{ height: "150px", width: "150px" }}
             alt="logo"
           />
         </div>
