@@ -21,12 +21,19 @@ const App = () => {
       <Layout>
         <Content
           style={{
-            height: "calc(100% - 64px)",
-            overflow: "auto",
             backgroundColor: "#c3fcf2",
           }}
         >
-          <RouterProvider router={router} />
+          <div
+            style={{
+              height: "100% ",
+              overflow: "auto",
+              marginLeft: "16px",
+              marginRight: "16px",
+            }}
+          >
+            <RouterProvider router={router} />
+          </div>
         </Content>
         <Footer
           style={{
