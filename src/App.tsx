@@ -1,15 +1,14 @@
-import React from "react";
-
 import { Layout } from "antd";
+import logo from "./assets/logo.png";
+import "./App.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router.tsx";
 
 const { Content, Footer, Sider } = Layout;
-import logo from "./assets/logo.png";
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ height: "100vh", overflow: "hidden" }}>
       <Sider style={{ backgroundColor: "#d5cbbf" }}>
         <div style={{ textAlign: "center" }}>
           <img
@@ -20,11 +19,23 @@ const App: React.FC = () => {
         </div>
       </Sider>
       <Layout>
-        <Content style={{ backgroundColor: "#c3fcf2" }}>
+        <Content
+          style={{
+            height: "calc(100% - 64px)",
+            overflow: "auto",
+            backgroundColor: "#c3fcf2",
+          }}
+        >
           <RouterProvider router={router} />
         </Content>
-        <Footer style={{ textAlign: "center", backgroundColor: "#649b92" }}>
-          Pelycano Music
+        <Footer
+          style={{
+            textAlign: "center",
+            height: "64px",
+            backgroundColor: "#649b92",
+          }}
+        >
+          Pelican Music ©{new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>

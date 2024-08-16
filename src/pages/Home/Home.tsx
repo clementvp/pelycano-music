@@ -1,7 +1,5 @@
-import Keyboard from "../../components/Keyboard/Keyboard.tsx";
-
 const Home = () => {
-  return <Keyboard></Keyboard>;
+  return <></>;
 };
 
 export default Home;
