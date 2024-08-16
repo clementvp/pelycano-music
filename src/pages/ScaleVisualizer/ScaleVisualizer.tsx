@@ -1,5 +1,5 @@
 import { Col, Row, Typography, List, Card, Input } from "antd";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { getAllScales } from "../../services/ScalesService.ts";
 
 const { Title } = Typography;
@@ -10,28 +10,38 @@ const ScaleVisualizer = () => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    const fetchedScales = getAllScales();
-    const sortedScales = fetchedScales.sort((a, b) =>
-      a.name.localeCompare(b.name),
-    );
-    setScales(
-      sortedScales.map((scale) => ({
-        ...scale,
-        name: scale.name.charAt(0).toUpperCase() + scale.name.slice(1),
-      })),
-    );
+    const fetchScales = async () => {
+      const fetchedScales = getAllScales();
+      const sortedScales = fetchedScales.sort((a, b) =>
+        a.name.localeCompare(b.name),
+      );
+      setScales(
+        sortedScales.map((scale) => ({
+          ...scale,
+          name: scale.name.charAt(0).toUpperCase() + scale.name.slice(1),
+        })),
+      );
+    };
+
+    void fetchScales();
   }, []);
 
   const filteredScales = scales.filter((item) =>
     item.name.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
+  const handleSearchChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <>
-      <Title>Scale visualizer</Title>
+      <Title>Scale Visualizer</Title>
       <Search
         placeholder="Search a Scale"
-        onSearch={(value) => setSearchValue(value)}
+        onChange={handleSearchChange}
         style={{ width: "50%", marginBottom: "16px" }}
       />
       <Row style={{ height: "calc(100% - 150px)" }}>
@@ -40,7 +50,11 @@ const ScaleVisualizer = () => {
             <List
               style={{ cursor: "pointer" }}
               dataSource={filteredScales}
-              renderItem={(item) => <List.Item>{item.name}</List.Item>}
+              renderItem={(item) => (
+                <List.Item>
+                  <div>{item.name}</div>
+                </List.Item>
+              )}
             />
           </Card>
         </Col>
