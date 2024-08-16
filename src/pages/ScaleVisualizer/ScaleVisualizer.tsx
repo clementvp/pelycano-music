@@ -38,6 +38,7 @@ const ScaleVisualizer = () => {
         <Col span={12} style={{ height: "100%" }}>
           <Card style={{ height: "100%", overflowY: "auto" }}>
             <List
+              style={{ cursor: "pointer" }}
               dataSource={filteredScales}
               renderItem={(item) => <List.Item>{item.name}</List.Item>}
             />
