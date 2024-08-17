@@ -27,7 +27,8 @@ const App = () => {
           <div
             style={{
               height: "100% ",
-              overflow: "auto",
+              overflowY: "auto",
+              overflowX: "hidden",
               marginLeft: "16px",
               marginRight: "16px",
             }}
